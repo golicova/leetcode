@@ -26,8 +26,8 @@ int main() {
     vector<int> intersectAnswer; 
     intersectAnswer = intersect(vect1, vect2);
 
-    for (int i = 0; i < intersectAnswer.size(); i++) {
-        cout << intersectAnswer[i] << endl; 
+    for (int i : intersectAnswer) {
+        cout << i << endl; 
     }
 
     // input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
@@ -37,8 +37,8 @@ int main() {
     vector<int> intersectAnswer2; 
     intersectAnswer2 = intersect(vect3, vect4);
 
-    for (int i = 0; i < intersectAnswer2.size(); i++) {
-        cout << intersectAnswer2[i] << endl; 
+    for (int i : intersectAnswer2) {
+        cout << i << endl; 
     }
 
     return 0;
