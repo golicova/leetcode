@@ -25,25 +25,27 @@ void rotateArray (vector<int> &nums, int k) {
 
 int main() {
     // test case 1 
-    /*
-    vector <int> numbers; 
-    for (int i = 1; i <= 7; i++) {
-        numbers.push_back(i);
+    vector<int> numbers {1,2,3,4,5,6,7};
+
+
+    cout << "[";
+    for (int i = 0; i < numbers.size(); i++) {
+        if (i == numbers.size() - 1) {
+            cout << numbers[i] << "]" << endl;
+        }
+        else cout << numbers[i] << ",";
     }
 
-    for (int i = 0; i < numbers.size(); i++) {
-        cout << numbers[i] << endl;
-    }
-        
+    /*    
     rotateArray(numbers, 3);
 
     cout << "array after rotation: " << endl;
     for (int i = 0; i < numbers.size(); i++) {
         cout << numbers[i] << endl;
     }
-    */ 
+    */
 
-
+    /*
     // test case 2
     vector <int> numbers; 
     numbers.push_back(-1);
@@ -61,6 +63,7 @@ int main() {
     for (int i = 0; i < numbers.size(); i++) {
         cout << numbers[i] << endl;
     }
+    */
 
     return 0; 
 }

@@ -43,7 +43,7 @@ int main()
     // contens of numbers2 are inside numbers
     numbers[1] = numbers2[1];
     cout << "numbers:" << numbers[1] << endl;
-    cout << "numbers2:" <<numbers2[1] << endl; 
+    cout << "numbers2:" << numbers2[1] << endl; 
 
     cout << removeDuplicates(numbers) << endl;
     cout << numbers.size() << endl; 
