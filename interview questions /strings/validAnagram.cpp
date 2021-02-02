@@ -17,16 +17,11 @@ bool isAnagram(string s, string t) {
     }
 
     for(auto i : counts) {
-        if(i.second == 1) return false; 
+        if(i.second) return false; 
     }
     return true;
 }
 
 int main() {
-    // 1
     cout << isAnagram("anagram", "nagaram") << endl;
-    // 0 
-    cout << isAnagram("rat", "car") << endl;
-    // 1
-    cout << isAnagram("a", "a") << endl;
 }
