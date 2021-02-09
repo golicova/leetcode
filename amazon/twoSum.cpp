@@ -17,7 +17,7 @@ using namespace std;
         I have to make sure that the numbers don't overlap, otherwise it can add up on the same number 
         --> so make j = i + 1, that way it always to the spot ahead of i 
 
-    time comlexity: O(n^2)
+    time complexity: O(n^2)
 */
 
 vector<int> twoSum(vector<int>& nums, int target) {
@@ -35,7 +35,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return noAnswer;
 }
 
-// how can I imporove this code with an unordered map?
+// how can I improve this code with an unordered map?
 // this runs in O(n)
 
 vector<int> twoSumImproved(vector<int> nums, int target) {
