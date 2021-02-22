@@ -30,6 +30,8 @@ using namespace std;
     --> looks like n^2 because nested because of the two while loops 
     --> worst case, the two pointers (i, j) would have to touch every single char
     space complixity O(n)
+
+    good video explanation: https://www.youtube.com/watch?v=4i6-9IzQHwo&ab_channel=MichaelMuinos
 */
 
 int lengthOfLongestSubstring(string s) {
