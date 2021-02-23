@@ -24,8 +24,14 @@ using namespace std;
         this is possible because we sorted our numbers first. 
 
         [-4, -1, -1, 0, 1, 2]
-        i     
+         i    j            k
 
+        [-4, -1, -1, 0, 1, 2]
+         i        j        k
+        
+        [-4, -1, -1, 0, 1, 2]
+         i           j     k
+         
     time complexity: O(n^2)
 */
 
@@ -37,7 +43,8 @@ vector<vector<int>> threeSum(vector<int>& nums) {
     vector<vector<int>> result; 
     sort(nums.begin(), nums.end());
     // last two elements are j and k 
-    for(int i = 0; i < n-2; ++i) {
+    for(int i = 0; i < n - 2; ++i) {
+        // if at the beginning or i != i - 1 
         if(i == 0 || nums[i] != nums[i - 1]) {
             // setting pointers
             int j = i + 1; 
@@ -47,8 +54,11 @@ vector<vector<int>> threeSum(vector<int>& nums) {
                 if(sum == 0) {
                     result.push_back({nums[i], nums[j], nums[k]});
                     // reducing duplicates again 
+                    // check if j is repeated
                     while(j < k && nums[j] == nums[j + 1]) j++;
+                    // check if k is repeated 
                     while(j < k && nums[k] == nums[k - 1]) k--; 
+                    // if no duplicated, still increment / decrement 
                     j++; k--; 
                 }
                 else if(sum > 0) k--; 
