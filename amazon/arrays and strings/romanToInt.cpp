@@ -51,7 +51,7 @@ int romanToInt(string s) {
     for(int i = length - 2; i >= 0; i--) {
         if(roman[s[i]] >= roman[s[i + 1]]) {
             result += roman[s[i]];
-        } else {
+        } else { // if smaller 
             result -= roman[s[i]];
         }
     }
