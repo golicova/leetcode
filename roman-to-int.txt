@@ -1,0 +1,111 @@
+----------------
+roman to integer
+----------------
+
+example 
+-------
+input: s = "LVIII"
+output: 58
+explanation: L = 50, V= 5, III = 3
+
+symbol       value
+------       -----
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+constraints:
+
+1 <= s.length <= 15
+s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M')
+it is guaranteed that s is a valid roman numeral in the range [1, 3999]
+
+pseudocode
+----------
+additive case is easy -> if given III, you just need to read in a symbol and add 1 
+subtraction is going to be more complicated 
+if there is a smaller value in front of a bigger value -> subtract 
+
+248 -> CCXLVII
+
+let's go from left to right 
+
+i = 0 to string length 
+
+C -> 100			result: 100 + 100 + 10 + 50 - 10 + 5 + 1 + 1 + 1
+C -> 100
+// notice how 10 < 50
+X -> 10
+L -> 50 
+V -> 5
+I -> 1
+I -> 1
+I -> 1
+
+
+solution
+--------
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character, Integer> map = new HashMap(); 
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        
+        int result = 0; 
+        
+        for(int i = 0; i < s.length(); i++) {
+            result = result + map.get(s.charAt(i));
+            
+            if(i > 0 && map.get(s.charAt(i)) > map.get(s.charAt(i - 1))) {
+                // remove twice because we need to undo result + map.get(s.charAt(i))
+                // and then actually remove the value 
+                result = result - 2 * map.get(s.charAt(i - 1));
+            }
+        }
+        return result; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

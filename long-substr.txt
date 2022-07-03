@@ -1,0 +1,41 @@
+longest substring without repeating characters
+----------------------------------------------
+
+input: s = "abcabcbb"
+output: 3
+explanation: The answer is "abc", with the length of 3.
+
+
+sliding window problem 
+----------------------
+- two pointers, where one stays at the beginning and the second one moves, therefore
+  expending the "window" 
+- using hash set 
+- keeping a max for when the "window" is the biggest 
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0; 
+        int right = 0; 
+        int max = 0; 
+        
+        HashSet<Character> hash = new HashSet(); 
+        
+        while (right < s.length()) {
+            if(!hash.contains(s.charAt(right))) {
+                hash.add(s.charAt(right));
+                right++; 
+                max = Math.max(hash.size(), max);
+            }
+            // char is already in the hash set
+            else {
+                hash.remove(s.charAt(left));
+                left++; 
+            }
+        }
+        return max; 
+    }
+}
+
+time complexity: O(n) 

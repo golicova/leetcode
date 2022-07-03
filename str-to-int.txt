@@ -1,0 +1,121 @@
+string to integer (atoi) 
+-----------------------
+
+
+input: s = "4193 with words"
+output: 4193
+Explanation:
+step 1: "4193 with words" (no characters read because there is no leading whitespace)
+         ^
+step 2: "4193 with words" (no characters read because there is neither a '-' nor '+')
+         ^
+step 3: "4193 with words" ("4193" is read in; reading stops because the next character is a non-digit)
+             ^
+the parsed integer is 4193.
+since 4193 is in the range [-231, 231 - 1], the final result is 4193.
+
+thought process: 
+----------------
+ascii code:
+43 -> + 
+45 -> -
+
+48 -> 0 
+49 -> 1 
+50 -> 2
+51 -> 3
+52 -> 4
+53 -> 5 
+54 -> 6
+55 -> 7
+56 -> 8
+57 -> 9
+
+so, if we get "4", we can see on our table that it corresponds with 52, which is an interger. 
+52 - 48 (base) = 4 (integer) 
+boom 
+
+this only works on single digits
+
+this works for all digits:
+int digit = 0; 
+digit = (digit * 10) + (int) s.charAt(i) - 48; 
+
+we have to make sure that we're only looking at chars 0 -> 9: 
+if(s.charAt(i) >= '0' && (int) s.charAt(i) <= '9')
+
+last thing we have to figure out is how to implement the - and the + 
+
+
+my shit that doesn't work: 
+class Solution {
+    public int myAtoi(String s) {
+        double digit = 0; 
+        Boolean negative = false; 
+        for(int i = 0; i < s.length(); i++) {
+            // if starts with lowercase words
+            if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+                // digit = 0 at this point 
+                return (int) digit;
+            }
+            if(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
+                // digit = 0 at this point 
+                return (int) digit;
+            }
+            if(s.charAt(i) == '.') {
+                return (int) digit; 
+            }
+            // if leading zero 
+            if(s.charAt(i) == '0') {
+                i++; 
+            }
+            // if is between 0 and 9
+            if(s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                digit = (digit * 10) + (int) s.charAt(i) - 48;
+            }
+            
+            // if is negative 
+            if(s.charAt(i) == '-') {
+               negative = true; 
+            }
+            
+            // overflow cases 
+            if(digit > Integer.MAX_VALUE) {
+                return negative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            }
+        }
+        if(negative) {
+           return - (int) digit; 
+        }
+        return (int) digit; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

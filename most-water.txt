@@ -1,0 +1,49 @@
+-------------------------
+container with most water
+-------------------------
+
+input: height = [1,8,6,2,5,4,8,3,7]
+output: 49
+explanation: the above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. 
+		 in this case, the max area of water (blue section) the container can 
+		 contain is 49.
+
+
+thoughts
+-----------
+we are going to use two pointer approach (pointer a and b) 
+[1,8,6,2,5,4,8,3,7]
+ a               b
+
+if a < b, use a as height 
+if a > b, use b as height 
+
+then multiply it by length -> a - b
+
+use Math.max to return max area
+
+
+solution
+--------
+
+class Solution {
+    public int maxArea(int[] height) {
+        int area = 0; 
+        int a = 0; 
+        int b = height.length - 1; 
+        
+        while (a < b) {
+            if (height[a] < height[b]) {
+                // if a pointer is the smaller one, we use it for height 
+                // b - a = length 
+                area = Math.max(area, height[a] * (b - a)); 
+                a++;
+            } else {
+                // if b pointer is the smaller one, we use it for height 
+                area = Math.max(area, height[b] * (b - a)); 
+                b--;
+            }
+        }
+        return area; 
+    }
+}
