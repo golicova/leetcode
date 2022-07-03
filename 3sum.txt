@@ -1,0 +1,51 @@
+----
+3sum
+----
+
+example 
+-------
+input: nums = [-1,0,1,2,-1,-4]
+output: [[-1,-1,2],[-1,0,1]]
+
+pseudocode
+----------
+take a number 
+subtract it from 0 -> 0 -- 5 = 5
+look for two numbers that add up to it 
+
+solution
+--------
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        // sort the array 
+        Arrays.sort(nums);
+        
+        // list of integer lists (sets)
+        List<List<Integer>> answer = new LinkedList(); 
+        
+        for(int i = 0; i < nums.length - 2; i++) {
+            if(i == 0  || (i > 0 && nums[i] != nums[i - 1])) {
+                int low = i + i; 
+                int high = nums.length - 1; 
+                int sum = 0 - nums[i];
+                
+                while(low < high) {
+                    // we have found the numbers
+                    if(nums[low] + nums[high] == sum) {
+                        answer.add(Arrays.asList(nums[i], nums[low], nums[high]));
+                            
+                        // make sure there are no duplicates 
+                        while(low < high && nums[low] == nums[low + 1]) low++; 
+                        while(low < high && nums[high] == nums[high - 1]) high--; 
+                        
+                        low++; 
+                        high--; 
+                    } else if (nums[low] + nums[high] > sum) {
+                        high--;
+                    } else low++; 
+                } 
+            }
+        }
+        return answer; 
+    }
+}

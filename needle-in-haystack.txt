@@ -1,0 +1,58 @@
+--------
+strStr()
+--------
+
+example 
+-------
+input: haystack = "hello", needle = "ll"
+output: 2
+
+input: haystack = "aaaaa", needle = "bba"
+output: -1
+
+if empty string, return 0
+
+constraints:
+1 <= haystack.length, needle.length <= 104
+haystack and needle consist of only lowercase English characters
+
+pseudocode
+----------
+take care of edge cases 
+
+loop through the haystack 
+if you find needle, you will be incrementing your j 
+if the whole needle is found, return i
+
+solution
+--------
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || needle.length() > haystack.length()) {
+            return -1;
+        }
+ 
+        if (needle == null || needle.length() == 0) {
+            return 0;
+        }
+ 
+        for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+            int j;
+            for (j = 0; j < needle.length(); j++) {
+                if (needle.charAt(j) != haystack.charAt(i + j)) {
+                    break;
+                }
+            }
+ 
+            if (j == needle.length()) {
+                return i;
+            }
+        }
+ 
+        return -1;
+    }
+}
+
+
+
+
