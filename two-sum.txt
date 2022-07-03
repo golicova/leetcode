@@ -1,0 +1,108 @@
+-------
+two-sum 
+-------
+
+input: nums = [2,7,11,15], target = 9
+output: [0,1]
+explanation: Because nums[0] + nums[1] == 9, we return [0, 1]
+
+
+my thoughts
+-----------
+look at the array of nums 
+grab the first number
+if it is, add it to other numbers one by one and check for = target 
+if you find it, return place of both numbers 
+
+
+loop solution
+-------------
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans;
+        for(int i = 0; i < nums.length - 1; i++) {
+            for(int j = i + 1; j < nums.length; j++) {
+                // check for target 
+                if(nums[i] + nums[j] == target) {
+                    ans = new int[]{i, j};
+                    return ans;
+                }
+            }
+        }
+        return null; 
+    }
+}
+
+time complexity: O(n^2) 
+
+
+hash map solution 
+-----------------
+[2,7,11,15] -> key 
+[0,1,2,3]   -> value 
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> numbers = new HashMap<Integer, Integer>();
+        int[] ans;
+        
+        // generating the hash map and searching in 
+        for(int i = 0; i < nums.length; i++) {
+            // calculating the difference that we will look up in the hash map 
+            int difference = target - nums[i];
+
+            // if we find the value 
+            if(numbers.get(difference) != null) {
+                // return the answer
+                ans = new int[]{numbers.get(difference), i};
+                return ans; 
+            } 
+            else {
+                // generating the hash map
+                numbers.put(nums[i], i);
+            }
+
+        }
+        return null; 
+    }
+}
+
+time complexity: O(n) -> because we only have 1 loop and hash map look up 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
