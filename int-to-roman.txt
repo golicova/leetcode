@@ -27,8 +27,8 @@ constrains:
 
 the result should be a string
 
-thoughts 
---------
+pseudocode
+----------
 24 -> XXIV 
 324 -> CCCXXIV
 104 -> CIV (notice how 0 is basically skipped) 

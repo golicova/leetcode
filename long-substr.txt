@@ -6,8 +6,8 @@ output: 3
 explanation: The answer is "abc", with the length of 3.
 
 
-sliding window problem 
-----------------------
+pseudocode
+----------
 - two pointers, where one stays at the beginning and the second one moves, therefore
   expending the "window" 
 - using hash set 

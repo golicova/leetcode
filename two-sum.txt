@@ -1,14 +1,12 @@
 -------
 two-sum 
 -------
-
 input: nums = [2,7,11,15], target = 9
 output: [0,1]
 explanation: Because nums[0] + nums[1] == 9, we return [0, 1]
 
-
-my thoughts
------------
+pseudocode
+----------
 look at the array of nums 
 grab the first number
 if it is, add it to other numbers one by one and check for = target 
