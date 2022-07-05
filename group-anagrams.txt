@@ -1,0 +1,31 @@
+--------------
+group anagrams
+--------------
+
+example 
+-------
+input: strs = ["eat","tea","tan","ate","nat","bat"]
+output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+constraints:
+1 <= strs.length <= 104
+0 <= strs[i].length <= 100
+strs[i] consists of lowercase english letter
+
+pseudocode
+----------
+take care of edge cases 
+create a hash map that will have a string and a list of string for key and value 
+loop through each string in strings 
+convert each string to a char array 
+sort the array 
+convert chars back to a string (key)
+if map does not contain that key, instert that key and an array list with it 
+otherwise, add the value under the key 
+return a list of lists of strings 
+	
+
+solution
+--------
+
+time complexity: O(n^2)
