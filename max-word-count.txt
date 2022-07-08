@@ -1,0 +1,64 @@
+----------------
+most common word 
+----------------
+
+example
+-------
+input: paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]
+output: "ball"
+explanation: 
+"hit" occurs 3 times, but it is a banned word.
+"ball" occurs twice (and no other word does), so it is the most frequent 
+non-banned word in the paragraph. 
+note that words in the paragraph are not case sensitive,
+that punctuation is ignored (even if adjacent to words, such as "ball,"), 
+and that "hit" isn't the answer even though it occurs more because it is banned.
+
+constraints:
+1 <= paragraph.length <= 1000
+paragraph consists of English letters, space ' ', or one of the symbols: "!?',;."
+0 <= banned.length <= 100
+1 <= banned[i].length <= 10
+banned[i] consists of only lowercase English letters
+
+pseudocode
+----------
+put each word with it's count in a hash map 
+if a word is banned, give it a value of -1 
+return the word with max count 
+
+solution
+--------
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        HashMap <String, Integer> map = new HashMap<>();
+        
+        int max = 0; 
+        String result = "";
+        
+        String[] p_arr = paragraph.toLowerCase().split("\\W+");
+                
+        for (String word : p_arr) { 
+            // returns value for the word (how many times it appers)
+            Integer count = map.get(word);
+            if(count == null) {
+                map.put(word, 1);
+            }
+            else {
+                map.put(word, count + 1);
+            }
+        }
+        
+        for(String bannedWord : banned) {
+            map.put(bannedWord, -1);
+        }
+        
+        for(String word : map.keySet()) {
+            if(map.get(word) > max) {
+                max = map.get(word);
+                result = word; 
+            }
+        }
+        return result;
+    }
+}
