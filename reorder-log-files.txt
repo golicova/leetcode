@@ -1,0 +1,72 @@
+-----------------
+reorder-log-files
+-----------------
+
+example
+-------
+input: logs = ["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]
+output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"]
+explanation:
+the letter-log contents are all different, so their ordering is "art can", "art zero", "own kit dig"
+the digit-logs have a relative order of "dig1 8 1 5 1", "dig2 3 6".
+
+constraints:
+1 <= logs.length <= 100
+3 <= logs[i].length <= 100
+all the tokens of logs[i] are separated by a single space
+logs[i] is guaranteed to have an identifier and at least one word after the identifier
+
+pseudocode
+----------
+using Arrays.sort() with lambda expression
+
+log1 < log2 -> -1
+log 1 = log2 -> 0
+log1 > log2 -> 1
+
+solution 
+--------
+class Solution {
+    public String[] reorderLogFiles(String[] logs) {
+        Arrays.sort(logs, (log1, log2) -> {
+            // log1 < log2 -> -1
+            // log 1 = log2 -> 0
+            // log1 > log2 -> 1
+            
+            int index1 = log1.indexOf(" ");
+            String id1 = log1.substring(0, index1);
+            String main1 = log1.substring(index1 + 1);
+            
+            int index2 = log2.indexOf(" ");
+            String id2 = log2.substring(0, index2);
+            String main2 = log2.substring(index2 + 1);
+            
+            boolean isDigit1 = Character.isDigit(main1.charAt(0));
+            boolean isDigit2 = Character.isDigit(main2.charAt(0));
+            
+            // if not digits 
+            if(!isDigit1 && !isDigit2) {
+                int value = main1.compareTo(main2);
+                // if mains are the same, compare by ids
+                if(value == 0) return id1.compareTo(id2);
+                return value; 
+            }
+            
+            return isDigit1 ? (isDigit2 ? 0 : 1) : -1; 
+            // if they are both digits, return 0 because we want them in that order 
+            // if(isDigit1 && isDigit2) {
+            //    return 0;
+            // }
+            
+            // letter logs always come before
+            // if(isDigit1 && !isDigit2) {
+            //    return 1;
+            // }
+            
+            // if(!isDigit1 && isDigit2) {
+            //    return -1;
+            // }
+        });
+        return logs; 
+    }
+}
